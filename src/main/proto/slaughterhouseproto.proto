@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package animals;
+
+service AnimalHandler {
+  rpc getAnimalsInvolved(RequestAnimalsByProductId) returns (AnimalReply);
+  rpc getAnimalById(IntRequest) returns (AnimalMessage);
+  rpc createAnimal(AnimalMessage) returns (AnimalMessage);
+  rpc getAllAnimals(IntRequest) returns (AnimalReply);
+}
+
+service ProductHandler {
+  rpc getProductsInvolved(RequestProductsByAnimalId) returns (ProductReply);
+  rpc getProductById(IntRequest) returns (ProductMessage);
+  rpc createProduct(ProductMessage) returns (ProductMessage);
+  rpc getAllProducts(IntRequest) returns (ProductReply);
+}
+
+//create animal
+message AnimalMessage{
+  int32 id = 1;
+  int32 weight = 2;
+  string date = 3;
+  string origin = 4;
+}
+
+//Create product
+message ProductMessage{
+  int32 id = 1;
+  string date = 2;
+  repeated AnimalMessage animalIds = 3;
+}
+
+//Request animals involved in a product
+message RequestAnimalsByProductId{
+  int32 id = 1;
+}
+//Reply full details animal involved in a product
+message AnimalReply{
+  repeated AnimalMessage animals = 1;
+}
+
+//Request products an animal has been involved in
+message RequestProductsByAnimalId{
+  int32 id = 1;
+}
+
+//Reply full details about products
+message ProductReply{
+  repeated ProductMessage products = 1;
+}
+
+message IntRequest{
+  int32 int = 1;
+}

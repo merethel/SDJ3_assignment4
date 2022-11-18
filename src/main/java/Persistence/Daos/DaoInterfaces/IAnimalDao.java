@@ -1,0 +1,13 @@
+package Persistence.Daos.DaoInterfaces;
+
+import Shared.Animal;
+
+import java.util.List;
+
+public interface IAnimalDao {
+    public Animal create(Animal animal);
+    public Animal getById(int animalId);
+
+    public List<Animal> getAllAnimals();
+
+}
