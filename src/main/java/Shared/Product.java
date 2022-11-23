@@ -14,7 +14,7 @@ public class Product {
     private String date;
 
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name="product_animal", joinColumns = @JoinColumn(name="fk_product"), inverseJoinColumns = @JoinColumn(name="fk_animal"))
 
     private List<Animal> animals;

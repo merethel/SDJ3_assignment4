@@ -10,4 +10,7 @@ public interface IAnimalDao {
 
     public List<Animal> getAllAnimals();
 
+    public List<Animal> getAnimalsByParameters(Animal animalParameters);
+
+
 }

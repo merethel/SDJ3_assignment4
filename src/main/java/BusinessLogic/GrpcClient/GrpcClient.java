@@ -7,8 +7,12 @@ import Shared.ProductAssembler;
 import animals.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+
+@Component
 
 public class GrpcClient {
 
@@ -22,7 +26,7 @@ public class GrpcClient {
     }
     public List<Animal> involvedAnimals(int id){
 
-        List<Animal> listToReturn = null;
+        List<Animal> listToReturn = new ArrayList<>();
 
 
 
@@ -40,7 +44,7 @@ public class GrpcClient {
 
     public List<Product> productsInvolvedIn(int id){
 
-        List<Product> listToReturn = null;
+        List<Product> listToReturn = new ArrayList<>();
 
         RequestProductsByAnimalId request = RequestProductsByAnimalId.newBuilder().setId(id).build();
         ProductReply reply = productStub.getProductsInvolved(request);
@@ -83,7 +87,7 @@ public class GrpcClient {
 
     public List<Product> getAllProducts()
     {
-        List<Product> productList = null;
+        List<Product> productList = new ArrayList<>();
         ProductReply reply = productStub.getAllProducts(IntRequest.newBuilder().getDefaultInstanceForType());
 
         for (ProductMessage message: reply.getProductsList()
@@ -95,7 +99,7 @@ public class GrpcClient {
 
     public List<Animal> getAllAnimals()
     {
-        List<Animal> animalList = null;
+        List<Animal> animalList = new ArrayList<>();
         AnimalReply reply = animalStub.getAllAnimals(IntRequest.newBuilder().getDefaultInstanceForType());
 
         for (AnimalMessage message: reply.getAnimalsList()
@@ -105,6 +109,26 @@ public class GrpcClient {
         return animalList;
     }
 
+    public List<Animal> getAnimalsByParameter(Animal animal)
+    {
+        AnimalMessage.Builder builder = AnimalMessage.newBuilder();
+
+        if (animal.getOrigin() != null)
+            builder.setOrigin(animal.getOrigin());
+        if (animal.getDate() != null)
+            builder.setDate(animal.getDate());
+
+        AnimalMessage animalParameters = builder.build();
+
+        List<Animal> animalList = new ArrayList<>();
+        AnimalReply reply = animalStub.getAllAnimalsByParameter(animalParameters);
+
+        for (AnimalMessage message: reply.getAnimalsList()
+        ) {
+            animalList.add(AnimalAssembler.fromMessageToAnimal(message));
+        }
+        return animalList;
+    }
 
 
 

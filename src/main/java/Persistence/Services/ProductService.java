@@ -57,9 +57,10 @@ public class ProductService extends ProductHandlerGrpc.ProductHandlerImplBase {
     public void getAllProducts(IntRequest request, StreamObserver<ProductReply> responseObserver) {
         List<Product> productList = productDao.getAllProducts();
         ProductReply reply = null;
+        ProductReply.Builder builder = ProductReply.newBuilder();
         for (Product product: productList
              ) {
-            reply = ProductReply.newBuilder().addProducts(ProductAssembler.fromProductToMessage(product)).build();
+            reply = builder.addProducts(ProductAssembler.fromProductToMessage(product)).build();
         }
         responseObserver.onNext(reply);
         responseObserver.onCompleted();

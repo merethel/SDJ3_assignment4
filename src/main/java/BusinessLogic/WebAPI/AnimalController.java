@@ -78,7 +78,9 @@ class AnimalController {
     }
 
     CollectionModel<EntityModel<Animal>> getByOrigin(String origin) {
-        List<EntityModel<Animal>> animals = repository.findAll().stream()
+        Animal animalParameters = new Animal();
+        animalParameters.setOrigin(origin);
+        List<EntityModel<Animal>> animals = animalLogic.getAnimalsByParameter(animalParameters).stream()
                 .map(assembler::toModel)
                 .filter(animal -> animal.getContent().getOrigin().equals(origin))
                 .collect(Collectors.toList());
@@ -88,7 +90,9 @@ class AnimalController {
 
 
     CollectionModel<EntityModel<Animal>> getByDate(String date) {
-        List<EntityModel<Animal>> animals = repository.findAll().stream()
+        Animal animalParameters = new Animal();
+        animalParameters.setDate(date);
+        List<EntityModel<Animal>> animals = animalLogic.getAnimalsByParameter(animalParameters).stream()
                 .map(assembler::toModel)
                 .filter(animal -> animal.getContent().getDate().equals(date))
                 .collect(Collectors.toList());

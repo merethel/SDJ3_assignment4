@@ -14,4 +14,6 @@ public interface IAnimalLogic {
     public List<Animal> getAnimalsInvolved(int ProductId);
 
     public List<Animal> getAllAnimals();
+
+    public List<Animal> getAnimalsByParameter(Animal animalParameters);
 }

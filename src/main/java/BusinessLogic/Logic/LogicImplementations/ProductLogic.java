@@ -4,9 +4,11 @@ import BusinessLogic.GrpcClient.GrpcClient;
 import BusinessLogic.Logic.LogicInterfaces.IProductLogic;
 import Shared.Animal;
 import Shared.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ProductLogic implements IProductLogic {
 
     private GrpcClient client;

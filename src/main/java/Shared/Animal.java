@@ -15,7 +15,7 @@ public class Animal {
     @Column
     private String origin;
 
-    @ManyToMany(mappedBy = "animals")
+    @ManyToMany(fetch = FetchType.EAGER ,mappedBy = "animals")
 
     private List<Product> products;
 

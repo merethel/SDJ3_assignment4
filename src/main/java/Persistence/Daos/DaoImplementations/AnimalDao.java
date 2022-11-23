@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalDao implements IAnimalDao {
@@ -83,7 +84,7 @@ public class AnimalDao implements IAnimalDao {
     public List<Animal> getAllAnimals() {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        List<Animal> animalsToReturn = null;
+        List<Animal> animalsToReturn = new ArrayList<>();
 
 
         try {
@@ -96,7 +97,6 @@ public class AnimalDao implements IAnimalDao {
             CriteriaQuery<Animal> criteria = builder.createQuery(Animal.class);
             criteria.from(Animal.class);
             animalsToReturn = session.createQuery(criteria).getResultList();
-
 
             transaction.commit();
 
@@ -112,4 +112,52 @@ public class AnimalDao implements IAnimalDao {
 
         return animalsToReturn;
     }
+
+    @Override
+    public List<Animal> getAnimalsByParameters(Animal animalParameters) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        List<Animal> animalsToReturn = new ArrayList<>();
+
+
+        try {
+            transaction = session.beginTransaction();
+
+            // here get object
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Animal> criteria = builder.createQuery(Animal.class);
+            criteria.from(Animal.class);
+            List<Animal> animals = session.createQuery(criteria).getResultList();
+
+            if(animalParameters.getOrigin() != null)
+            {
+                for (Animal animal: animals
+                ) {
+                    if(animal.getOrigin().equals(animalParameters.getOrigin()))
+                        animalsToReturn.add(animal);
+                }
+            }
+            if(animalParameters.getDate() != null)
+            {
+                for (Animal animal: animals
+                ) {
+                    if(animal.getDate().equals(animalParameters.getDate()))
+                        animalsToReturn.add(animal);
+                }
+            }
+
+            transaction.commit();
+
+        } catch (HibernateException ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            Logger.getLogger("con").info("Exception: " + ex.getMessage());
+            ex.printStackTrace(System.err);
+        } finally {
+            session.close();
+        }
+
+        return animalsToReturn;    }
 }

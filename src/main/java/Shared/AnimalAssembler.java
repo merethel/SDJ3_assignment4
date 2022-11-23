@@ -1,6 +1,11 @@
 package Shared;
 
 import animals.AnimalMessage;
+import animals.ProductMessage;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AnimalAssembler {
 
     public static Animal fromMessageToAnimal(AnimalMessage animalToAssemble){
@@ -9,17 +14,21 @@ public class AnimalAssembler {
                 animalToAssemble.getDate(),
                 animalToAssemble.getOrigin()
         );
+
+        animal.setRegistrationNumber(animalToAssemble.getId());
         return animal;
     }
 
     public static AnimalMessage fromAnimalToMessage(Animal animal){
-        AnimalMessage message = AnimalMessage.newBuilder()
+        List<ProductMessage> productList = new ArrayList<>();
+
+        AnimalMessage animalMessage = AnimalMessage.newBuilder()
                 .setId(animal.getRegistrationNumber())
                 .setWeight(animal.getWeight())
                 .setOrigin(animal.getOrigin())
                 .setDate(animal.getDate())
                 .build();
 
-        return message;
+        return animalMessage;
     }
 }

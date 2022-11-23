@@ -5,10 +5,13 @@ import BusinessLogic.Logic.LogicInterfaces.IAnimalLogic;
 import Shared.Animal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Indexed;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component
 public class AnimalLogic implements IAnimalLogic {
 
     private GrpcClient client;
@@ -38,6 +41,13 @@ public class AnimalLogic implements IAnimalLogic {
     @Override
     public List<Animal> getAllAnimals() {
         return client.getAllAnimals();
+    }
+
+    @Override
+    public List<Animal> getAnimalsByParameter(Animal animalParameters) {
+
+
+        return client.getAnimalsByParameter(animalParameters);
     }
 
 }

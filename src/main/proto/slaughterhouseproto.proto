@@ -9,6 +9,7 @@ service AnimalHandler {
   rpc getAnimalById(IntRequest) returns (AnimalMessage);
   rpc createAnimal(AnimalMessage) returns (AnimalMessage);
   rpc getAllAnimals(IntRequest) returns (AnimalReply);
+  rpc getAllAnimalsByParameter (AnimalMessage) returns (AnimalReply);
 }
 
 service ProductHandler {
@@ -24,6 +25,7 @@ message AnimalMessage{
   int32 weight = 2;
   string date = 3;
   string origin = 4;
+  repeated ProductMessage products = 5;
 }
 
 //Create product

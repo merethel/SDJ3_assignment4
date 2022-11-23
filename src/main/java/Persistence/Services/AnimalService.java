@@ -58,9 +58,24 @@ public class AnimalService extends AnimalHandlerGrpc.AnimalHandlerImplBase {
     public void getAllAnimals(IntRequest request, StreamObserver<AnimalReply> responseObserver) {
         List<Animal> animalList = animalDao.getAllAnimals();
         AnimalReply reply = null;
+        AnimalReply.Builder builder = AnimalReply.newBuilder();
         for (Animal animal: animalList
              ) {
-            reply = AnimalReply.newBuilder().addAnimals(AnimalAssembler.fromAnimalToMessage(animal)).build();
+            reply = builder.addAnimals(AnimalAssembler.fromAnimalToMessage(animal)).build();
+        }
+
+        responseObserver.onNext(reply);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getAllAnimalsByParameter(AnimalMessage request, StreamObserver<AnimalReply> responseObserver) {
+        List<Animal> animalList = animalDao.getAnimalsByParameters(AnimalAssembler.fromMessageToAnimal(request));
+        AnimalReply reply = null;
+        AnimalReply.Builder builder = AnimalReply.newBuilder();
+        for (Animal animal: animalList
+        ) {
+            reply = builder.addAnimals(AnimalAssembler.fromAnimalToMessage(animal)).build();
         }
 
         responseObserver.onNext(reply);
