@@ -14,17 +14,15 @@ public class Product {
     private String date;
 
 
-    @ManyToMany()
-    @JoinTable(name="product_animal", joinColumns = @JoinColumn(name="fk_product"), inverseJoinColumns = @JoinColumn(name="fk_animal"))
-
-    private List<Animal> animals;
+    @OneToMany()
+    private List<AnimalPart> animalParts;
 
     public Product() {
     }
 
-    public Product(String date, List<Animal> animals) {
+    public Product(String date, List<AnimalPart> animalParts) {
         this.date = date;
-        this.animals = animals;
+        this.animalParts = animalParts;
     }
 
     public int getProductNumber() {
@@ -35,8 +33,8 @@ public class Product {
         return date;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
+    public List<AnimalPart> getAnimalParts() {
+        return animalParts;
     }
 
     public void setProductNumber(int productNumber) {
@@ -47,8 +45,8 @@ public class Product {
         this.date = date;
     }
 
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
+    public void setAnimals(List<AnimalPart> animalParts) {
+        this.animalParts = animalParts;
     }
 
 }

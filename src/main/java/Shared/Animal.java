@@ -15,9 +15,8 @@ public class Animal {
     @Column
     private String origin;
 
-    @ManyToMany(fetch = FetchType.EAGER ,mappedBy = "animals")
-
-    private List<Product> products;
+    @OneToMany
+    private List<AnimalPart> animalParts;
 
     public Animal(int weight, String date, String origin) {
         this.weight = weight;
@@ -61,11 +60,11 @@ public class Animal {
         this.origin = origin;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<AnimalPart> getAnimalParts() {
+        return animalParts;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setAnimalParts(List<AnimalPart> animalParts) {
+        this.animalParts = animalParts;
     }
 }

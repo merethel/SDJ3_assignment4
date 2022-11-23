@@ -1,6 +1,7 @@
 package Shared;
 
 import animals.AnimalMessage;
+import animals.AnimalPartMessage;
 import animals.ProductMessage;
 
 import java.util.ArrayList;
@@ -25,18 +26,16 @@ public class ProductAssembler {
     }
 
     public static ProductMessage fromProductToMessage(Product product){
-            List<AnimalMessage> animalList = new ArrayList<>();
+            List<AnimalPartMessage> animalList = new ArrayList<>();
 
-            for (Animal animal: product.getAnimals()) {
-                AnimalMessage animalMessage = AnimalAssembler.fromAnimalToMessage(animal);
-                animalList.add(animalMessage);
+            for (AnimalPart part: product.getAnimalParts()) {
+                AnimalPartMessage animalPartMessage = AnimalPartAssembler.fromAnimalPartToMessage(part);
+                animalList.add(animalPartMessage);
             }
 
             ProductMessage message = ProductMessage.newBuilder()
                 .setId(product.getProductNumber())
                 .setDate(product.getDate())
-                .addAllAnimalIds(animalList).build();
-
         return message;
     }
 

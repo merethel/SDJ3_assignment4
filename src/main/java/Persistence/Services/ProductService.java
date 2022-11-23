@@ -3,6 +3,7 @@ package Persistence.Services;
 import Persistence.Daos.DaoImplementations.AnimalDao;
 import Persistence.Daos.DaoImplementations.ProductDao;
 import Shared.Animal;
+import Shared.AnimalPart;
 import Shared.Product;
 import Shared.ProductAssembler;
 import animals.*;
@@ -26,9 +27,10 @@ public class ProductService extends ProductHandlerGrpc.ProductHandlerImplBase {
         List<ProductMessage> products = new ArrayList<>();
 
         Animal animal = animalDao.getById(request.getId());
-
-        for (Product product : animal.getProducts()) {
-            products.add(ProductAssembler.fromProductToMessage(product));
+        for (AnimalPart parts : animal.getAnimalParts()) {
+            for (Product product : parts.getProductList()) {
+                products.add(ProductAssembler.fromProductToMessage(product));
+            }
         }
 
         ProductReply reply = ProductReply.newBuilder().addAllProducts(products).build();

@@ -19,20 +19,46 @@ service ProductHandler {
   rpc getAllProducts(IntRequest) returns (ProductReply);
 }
 
+service TrayHandler {
+  rpc createTray (TrayMessage) returns (TrayMessage);
+  rpc getTray (IntRequest) returns (TrayMessage);
+}
+
+service AnimalPartHandler {
+  rpc createAnimalPart (AnimalPartMessage) returns (AnimalPartMessage);
+  rpc getAnimalPart (IntRequest) returns (AnimalPartMessage);
+}
+
+//AnimalPart
+message AnimalPartMessage{
+  int32 id = 1;
+  AnimalMessage animalIComeFrom = 2;
+  int32 weight = 3;
+  TrayMessage trayIComeFrom = 4;
+  string typeOfPart = 5;
+}
+
+message TrayMessage{
+  int32 trayNumber = 1;
+  string TypeOfPart = 2;
+  int32 maxWeight = 3;
+  repeated AnimalPartMessage animalParts = 4;
+}
+
 //create animal
 message AnimalMessage{
   int32 id = 1;
   int32 weight = 2;
   string date = 3;
   string origin = 4;
-  repeated ProductMessage products = 5;
+  repeated AnimalPartMessage parts = 5;
 }
 
 //Create product
 message ProductMessage{
   int32 id = 1;
   string date = 2;
-  repeated AnimalMessage animalIds = 3;
+  repeated AnimalPartMessage animalIds = 3;
 }
 
 //Request animals involved in a product

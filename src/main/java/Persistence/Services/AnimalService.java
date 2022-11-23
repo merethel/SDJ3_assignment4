@@ -28,9 +28,7 @@ public class AnimalService extends AnimalHandlerGrpc.AnimalHandlerImplBase {
 
         Product product = productDao.getById(id.getId());
 
-        for (Animal animal : product.getAnimals()) {
-            animals.add(AnimalAssembler.fromAnimalToMessage(animal));
-        }
+        product.getAnimalParts()
 
         AnimalReply reply = AnimalReply.newBuilder().addAllAnimals(animals).build();
 

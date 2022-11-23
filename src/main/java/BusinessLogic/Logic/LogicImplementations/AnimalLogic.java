@@ -3,11 +3,7 @@ package BusinessLogic.Logic.LogicImplementations;
 import BusinessLogic.GrpcClient.GrpcClient;
 import BusinessLogic.Logic.LogicInterfaces.IAnimalLogic;
 import Shared.Animal;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Indexed;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
