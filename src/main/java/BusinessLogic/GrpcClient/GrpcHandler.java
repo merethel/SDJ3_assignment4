@@ -1,8 +1,10 @@
 package BusinessLogic.GrpcClient;
 
+import Shared.Model.Tray;
 import animals.AnimalHandlerGrpc;
 import animals.AnimalPartHandlerGrpc;
 import animals.ProductHandlerGrpc;
+import animals.TrayHandlerGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -29,6 +31,14 @@ public class GrpcHandler {
                 .usePlaintext().build();
 
         return AnimalPartHandlerGrpc
+                .newBlockingStub(managedChannel);
+    }
+
+    public static TrayHandlerGrpc.TrayHandlerBlockingStub getTrayStub() {
+        managedChannel = ManagedChannelBuilder.forAddress("localhost", 9090)
+                .usePlaintext().build();
+
+        return TrayHandlerGrpc
                 .newBlockingStub(managedChannel);
     }
 }

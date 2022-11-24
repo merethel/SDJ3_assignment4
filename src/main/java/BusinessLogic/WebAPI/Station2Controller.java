@@ -26,19 +26,6 @@ public class Station2Controller {
         this.animalPartModelAssembler = animalPartModelAssembler;
     }
 
-    @GetMapping("/animals/{registrationNumber}")
-    EntityModel<Animal> one(@PathVariable int registrationNumber) {
-
-        Animal animal = null;
-        try {
-            animal = animalLogic.getById((registrationNumber)); //
-        } catch (Exception e)
-        {
-            throw new AnimalNotFoundException(registrationNumber);
-        }
-
-        return assembler.toModel(animal);
-    }
 
     @PostMapping("/animalparts")
     ResponseEntity<?> newAnimalPart(@RequestBody AnimalPartCreationDto newAnimalPart) {
@@ -48,4 +35,5 @@ public class Station2Controller {
                 .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())//
                 .body(entityModel);
     }
+
 }

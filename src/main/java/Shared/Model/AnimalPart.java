@@ -7,12 +7,14 @@ import java.util.List;
 
 public class AnimalPart {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "AnimalPart_sequence")
+    @SequenceGenerator(sequenceName = "AnimalPart_sequence", allocationSize = 100, name = "AnimalPart_sequence")
     private int id;
 
     @ManyToOne
     private Animal animalIComeFrom;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Tray trayIComeFrom;
     private int weight;
 

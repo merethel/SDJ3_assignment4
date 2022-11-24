@@ -1,15 +1,16 @@
 package BusinessLogic.GrpcClient;
 
 import Shared.Assemblers.AnimalPartAssembler;
+import Shared.Assemblers.TrayAssembler;
 import Shared.Dtos.AnimalPartCreationDto;
 import Shared.Model.Animal;
 import Shared.Assemblers.AnimalAssembler;
 import Shared.Model.AnimalPart;
 import Shared.Model.Product;
 import Shared.Assemblers.ProductAssembler;
+import Shared.Model.Tray;
 import animals.*;
 import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,8 +25,10 @@ public class GrpcClient {
     ProductHandlerGrpc.ProductHandlerBlockingStub productStub;
 
     AnimalPartHandlerGrpc.AnimalPartHandlerBlockingStub animalPartStub;
+    TrayHandlerGrpc.TrayHandlerBlockingStub trayStub;
 
     public GrpcClient() {
+        trayStub = GrpcHandler.getTrayStub();
         animalStub = GrpcHandler.getAnimalStub();
         productStub = GrpcHandler.getProductStub();
         animalPartStub = GrpcHandler.getAnimalPartStub();
@@ -144,5 +147,9 @@ public class GrpcClient {
     }
 
 
-
+    public Tray getTrayById(int trayIComeFromId) {
+        TrayMessage reply = trayStub.getTrayById(IntRequest.newBuilder().setInt(trayIComeFromId).build());
+        Tray trayToReturn = TrayAssembler.fromMessageToTray(reply);
+        return trayToReturn;
+    }
 }

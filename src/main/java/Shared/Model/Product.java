@@ -8,13 +8,14 @@ import java.util.List;
 public class Product {
     @Id
     @Column
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Product_sequence")
+    @SequenceGenerator(sequenceName = "Product_sequence", allocationSize = 1000, name = "Product_sequence")
     private  int productNumber;
     @Column
     private String date;
 
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<AnimalPart> animalParts;
 
     public Product() {

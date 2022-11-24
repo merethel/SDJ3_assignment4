@@ -21,7 +21,7 @@ service ProductHandler {
 
 service TrayHandler {
   rpc createTray (TrayMessage) returns (TrayMessage);
-  rpc getTray (IntRequest) returns (TrayMessage);
+  rpc getTrayById (IntRequest) returns (TrayMessage);
 }
 
 service AnimalPartHandler {

@@ -5,7 +5,9 @@ import Persistence.Daos.DaoImplementations.ProductDao;
 import Persistence.Services.AnimalService;
 import Persistence.Services.ProductService;
 import Shared.Model.Animal;
+import Shared.Model.AnimalPart;
 import Shared.Model.Product;
+import Shared.Model.Tray;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.hibernate.SessionFactory;
@@ -26,6 +28,8 @@ public class StartServer {
         configuration.setProperty("hibernate.connection.password", keyboard.nextLine());
         configuration.addAnnotatedClass(Animal.class);
         configuration.addAnnotatedClass(Product.class);
+        configuration.addAnnotatedClass(AnimalPart.class);
+        configuration.addAnnotatedClass(Tray.class);
 
 
         //Session factory - Creates temporary connections to the database (aka sessions)
@@ -37,7 +41,7 @@ public class StartServer {
         AnimalDao animalDao = new AnimalDao(sessionFactory);
 
         //IMPORTANT, run this line only to populate the datebase.
-        //LoadDatabase.initDatabase(sessionFactory);
+        LoadDatabase.initDatabase(sessionFactory);
 
         Server server = ServerBuilder.forPort(9090).addService(new AnimalService(productDao, animalDao)).addService( new ProductService(productDao,animalDao)).build();
         server.start();

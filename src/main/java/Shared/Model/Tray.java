@@ -7,11 +7,13 @@ import java.util.List;
 @Entity
 
 public class Tray {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Tray_sequence")
+    @SequenceGenerator(sequenceName = "Tray_sequence", allocationSize = 500, name = "Tray_sequence")
     private int trayNumber;
     private String typeOfPart;
     private int maxWeight;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<AnimalPart> parts;
 
     public Tray(String typeOfPart, int maxWeight, ArrayList<AnimalPart> parts) {

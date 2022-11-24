@@ -6,7 +6,10 @@ import java.util.List;
 @Entity
 @Table(name = "animal")
 public class Animal {
-    @Id @GeneratedValue @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Animal_sequence")
+    @SequenceGenerator(sequenceName = "Animal_sequence", allocationSize = 1, name = "Animal_sequence")
+    @Column
     private  int registrationNumber;
     @Column
     private int weight;

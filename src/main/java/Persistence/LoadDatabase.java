@@ -25,7 +25,6 @@ public class LoadDatabase {
         AnimalPart animalPart1_2 = new AnimalPart(animal1, 50, "Hjerte");
         AnimalPart animalPart1_3 = new AnimalPart(animal1, 20, "Bacon");
 
-
         AnimalPart animalPart2_1 = new AnimalPart(animal2, 10, "Tunge");
         AnimalPart animalPart2_2 = new AnimalPart(animal2, 50, "Hjerte");
         AnimalPart animalPart2_3 = new AnimalPart(animal2, 20, "Bacon");
@@ -98,6 +97,7 @@ public class LoadDatabase {
         session.save(product6);
         session.save(product7);
 
+
         session.save(animalPart1_1);
         session.save(animalPart1_2);
         session.save(animalPart1_3);
@@ -108,13 +108,12 @@ public class LoadDatabase {
         session.save(animalPart3_2);
         session.save(animalPart3_3);
 
-
         session.save(tray1);
         session.save(tray2);
         session.save(tray3);
 
-
         session.getTransaction().commit();
+
         session.close();
     }
 }
