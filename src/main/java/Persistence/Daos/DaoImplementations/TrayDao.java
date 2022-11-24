@@ -1,8 +1,7 @@
 package Persistence.Daos.DaoImplementations;
 
 import Persistence.Daos.DaoInterfaces.ITrayDao;
-import Shared.AnimalPart;
-import Shared.Tray;
+import Shared.Model.Tray;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

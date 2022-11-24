@@ -2,13 +2,11 @@ package Persistence.Services;
 
 import Persistence.Daos.DaoInterfaces.IAnimalDao;
 import Persistence.Daos.DaoInterfaces.IProductDao;
-import Shared.Animal;
-import Shared.AnimalAssembler;
-import Shared.Product;
-import Shared.ProductAssembler;
+import Shared.Model.Animal;
+import Shared.Assemblers.AnimalAssembler;
+import Shared.Model.Product;
 import animals.*;
 import io.grpc.stub.StreamObserver;
-import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +25,6 @@ public class AnimalService extends AnimalHandlerGrpc.AnimalHandlerImplBase {
         List<AnimalMessage> animals = new ArrayList<>();
 
         Product product = productDao.getById(id.getId());
-
-        product.getAnimalParts()
 
         AnimalReply reply = AnimalReply.newBuilder().addAllAnimals(animals).build();
 

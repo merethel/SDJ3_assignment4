@@ -2,8 +2,7 @@ package BusinessLogic.Logic.LogicImplementations;
 
 import BusinessLogic.GrpcClient.GrpcClient;
 import BusinessLogic.Logic.LogicInterfaces.IProductLogic;
-import Shared.Animal;
-import Shared.Product;
+import Shared.Model.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

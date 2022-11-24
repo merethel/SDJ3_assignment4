@@ -1,9 +1,6 @@
 package BusinessLogic.Logic.LogicInterfaces;
 
-import Shared.Animal;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.stereotype.Indexed;
+import Shared.Model.Animal;
 
 import java.util.List;
 

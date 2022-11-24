@@ -2,10 +2,10 @@ package Persistence.Services;
 
 import Persistence.Daos.DaoImplementations.AnimalDao;
 import Persistence.Daos.DaoImplementations.ProductDao;
-import Shared.Animal;
-import Shared.AnimalPart;
-import Shared.Product;
-import Shared.ProductAssembler;
+import Shared.Model.Animal;
+import Shared.Model.AnimalPart;
+import Shared.Model.Product;
+import Shared.Assemblers.ProductAssembler;
 import animals.*;
 import io.grpc.stub.StreamObserver;
 

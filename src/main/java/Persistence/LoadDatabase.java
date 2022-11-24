@@ -1,12 +1,14 @@
 package Persistence;
 
-import Shared.*;
+import Shared.Model.Animal;
+import Shared.Model.AnimalPart;
+import Shared.Model.Product;
+import Shared.Model.Tray;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class LoadDatabase {
     public static void initDatabase(SessionFactory sessionFactory) {

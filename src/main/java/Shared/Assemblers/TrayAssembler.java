@@ -1,10 +1,11 @@
-package Shared;
+package Shared.Assemblers;
 
+import Shared.Model.AnimalPart;
+import Shared.Model.Tray;
 import animals.AnimalPartMessage;
 import animals.TrayMessage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TrayAssembler {
     public static Tray fromMessageToTray(TrayMessage trayToAssemble){

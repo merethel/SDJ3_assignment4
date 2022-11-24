@@ -1,9 +1,12 @@
 package BusinessLogic.GrpcClient;
 
-import Shared.Animal;
-import Shared.AnimalAssembler;
-import Shared.Product;
-import Shared.ProductAssembler;
+import Shared.Assemblers.AnimalPartAssembler;
+import Shared.Dtos.AnimalPartCreationDto;
+import Shared.Model.Animal;
+import Shared.Assemblers.AnimalAssembler;
+import Shared.Model.AnimalPart;
+import Shared.Model.Product;
+import Shared.Assemblers.ProductAssembler;
 import animals.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -20,9 +23,12 @@ public class GrpcClient {
     AnimalHandlerGrpc.AnimalHandlerBlockingStub animalStub;
     ProductHandlerGrpc.ProductHandlerBlockingStub productStub;
 
+    AnimalPartHandlerGrpc.AnimalPartHandlerBlockingStub animalPartStub;
+
     public GrpcClient() {
-        animalStub = getAnimalStub();
-        productStub = getProductStub();
+        animalStub = GrpcHandler.getAnimalStub();
+        productStub = GrpcHandler.getProductStub();
+        animalPartStub = GrpcHandler.getAnimalPartStub();
     }
     public List<Animal> involvedAnimals(int id){
 
@@ -130,32 +136,13 @@ public class GrpcClient {
         return animalList;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    private AnimalHandlerGrpc.AnimalHandlerBlockingStub getAnimalStub() {
-        managedChannel = ManagedChannelBuilder.forAddress("localhost", 9090)
-                .usePlaintext().build();
-
-        return AnimalHandlerGrpc
-                .newBlockingStub(managedChannel);
+    public AnimalPart createAnimalPart(AnimalPartCreationDto animalPart)
+    {
+        AnimalPartMessage reply = animalPartStub.createAnimalPart(AnimalPartAssembler.fromAnimalPartCreationDtoToMessage(animalPart));
+        AnimalPart created = AnimalPartAssembler.fromMessageToAnimalPart(reply);
+        return created;
     }
-    private ProductHandlerGrpc.ProductHandlerBlockingStub getProductStub() {
-        managedChannel = ManagedChannelBuilder.forAddress("localhost", 9090)
-                .usePlaintext().build();
 
-        return ProductHandlerGrpc
-                .newBlockingStub(managedChannel);
-    }
 
 
 }

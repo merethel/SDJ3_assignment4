@@ -1,6 +1,6 @@
 package BusinessLogic.WebAPI;
 
-import Shared.Animal;
+import Shared.Model.Animal;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

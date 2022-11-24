@@ -1,7 +1,6 @@
 package BusinessLogic.Logic.LogicInterfaces;
 
-import Shared.Animal;
-import Shared.Product;
+import Shared.Model.Product;
 
 import java.util.List;
 

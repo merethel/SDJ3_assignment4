@@ -25,7 +25,7 @@ service TrayHandler {
 }
 
 service AnimalPartHandler {
-  rpc createAnimalPart (AnimalPartMessage) returns (AnimalPartMessage);
+  rpc createAnimalPart (AnimalPartCreationDtoMessage) returns (AnimalPartMessage);
   rpc getAnimalPart (IntRequest) returns (AnimalPartMessage);
 }
 
@@ -35,6 +35,13 @@ message AnimalPartMessage{
   AnimalMessage animalIComeFrom = 2;
   int32 weight = 3;
   TrayMessage trayIComeFrom = 4;
+  string typeOfPart = 5;
+}
+
+message AnimalPartCreationDtoMessage{
+  int32 AnimalIComeFromId = 2;
+  int32 weight = 3;
+  int32 trayIComeFromId = 4;
   string typeOfPart = 5;
 }
 

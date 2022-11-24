@@ -1,5 +1,6 @@
-package Shared;
+package Shared.Assemblers;
 
+import Shared.Model.Animal;
 import animals.AnimalMessage;
 import animals.ProductMessage;
 

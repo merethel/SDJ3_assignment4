@@ -2,8 +2,7 @@ package BusinessLogic.WebAPI;
 
 import BusinessLogic.Logic.LogicInterfaces.IAnimalLogic;
 import BusinessLogic.Logic.LogicInterfaces.IProductLogic;
-import Shared.Animal;
-import Shared.Exceptions.AnimalNotFoundException;
+import Shared.Model.Animal;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;

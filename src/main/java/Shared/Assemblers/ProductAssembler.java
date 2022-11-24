@@ -1,5 +1,8 @@
-package Shared;
+package Shared.Assemblers;
 
+import Shared.Model.Animal;
+import Shared.Model.AnimalPart;
+import Shared.Model.Product;
 import animals.AnimalMessage;
 import animals.AnimalPartMessage;
 import animals.ProductMessage;
@@ -10,18 +13,18 @@ import java.util.List;
 public class ProductAssembler {
 
     public static Product fromMessageToProduct(ProductMessage productToAssemble){
-        List<Animal> animals = new ArrayList<>();
+        List<AnimalPart> animalPartList = new ArrayList<>();
 
-        for (AnimalMessage animalMessage:productToAssemble.getAnimalIdsList()) {
-            Animal animal = AnimalAssembler.fromMessageToAnimal(animalMessage);
-            animals.add(animal);
+        for (AnimalPartMessage animalPartMessage:productToAssemble.getAnimalIdsList()) {
+            AnimalPart animalPart = AnimalPartAssembler.fromMessageToAnimalPart(animalPartMessage);
+            animalPartList.add(animalPart);
         }
 
 
         Product product = new Product(
                 productToAssemble.getDate(),
-                animals
-        );
+                animalPartList);
+        product.setProductNumber(productToAssemble.getId());
         return product;
     }
 
@@ -35,7 +38,7 @@ public class ProductAssembler {
 
             ProductMessage message = ProductMessage.newBuilder()
                 .setId(product.getProductNumber())
-                .setDate(product.getDate())
+                .setDate(product.getDate()).build();
         return message;
     }
 

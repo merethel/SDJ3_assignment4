@@ -1,6 +1,6 @@
 package Persistence.Daos.DaoInterfaces;
 
-import Shared.Tray;
+import Shared.Model.Tray;
 
 public interface ITrayDao
     {

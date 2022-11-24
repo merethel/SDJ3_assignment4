@@ -1,4 +1,4 @@
-package Shared;
+package Shared.Model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

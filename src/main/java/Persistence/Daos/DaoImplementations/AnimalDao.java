@@ -1,13 +1,11 @@
 package Persistence.Daos.DaoImplementations;
 
 import Persistence.Daos.DaoInterfaces.IAnimalDao;
-import Shared.Animal;
-import Shared.Product;
+import Shared.Model.Animal;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.jboss.logging.Logger;
 
 import javax.persistence.criteria.CriteriaBuilder;

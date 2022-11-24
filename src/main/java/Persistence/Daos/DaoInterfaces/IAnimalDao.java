@@ -1,6 +1,6 @@
 package Persistence.Daos.DaoInterfaces;
 
-import Shared.Animal;
+import Shared.Model.Animal;
 
 import java.util.List;
 

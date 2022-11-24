@@ -1,8 +1,10 @@
 package Persistence.Daos.DaoImplementations;
 
 import Persistence.Daos.DaoInterfaces.IAnimalPartDao;
-import Shared.Animal;
-import Shared.AnimalPart;
+import Shared.Dtos.AnimalPartCreationDto;
+import Shared.Model.Animal;
+import Shared.Model.AnimalPart;
+import Shared.Model.Tray;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +21,7 @@ public class AnimalPartDao implements IAnimalPartDao {
 
 
     @Override
-    public AnimalPart create(AnimalPart animalPart) {
+    public AnimalPart create(AnimalPartCreationDto animalPart) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         AnimalPart animalPartToReturn = null;
@@ -29,6 +31,14 @@ public class AnimalPartDao implements IAnimalPartDao {
             transaction = session.beginTransaction();
 
             // here get object
+            AnimalPart animalPartToSave = new AnimalPart(
+
+            );
+            animalPartToSave.setTypeOfPart(animalPart.getTypeOfPart());
+            animalPartToSave.setAnimalIComeFrom(session.get(Animal.class, animalPart.getAnimalIComeFromId()));
+            animalPartToSave.setTrayIComeFrom(session.get(Tray.class, animalPart.getTrayIComeFromId()));
+            animalPartToSave.setWeight(animalPart.getWeight());
+
             int animalPartId = (int) session.save(animalPart);
             animalPartToReturn = session.get(AnimalPart.class, animalPartId);
             transaction.commit();

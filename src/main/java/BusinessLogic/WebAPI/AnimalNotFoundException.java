@@ -1,4 +1,4 @@
-package Shared.Exceptions;
+package BusinessLogic.WebAPI;
 
 public class AnimalNotFoundException extends RuntimeException {
     public AnimalNotFoundException(int registrationNumber) {
