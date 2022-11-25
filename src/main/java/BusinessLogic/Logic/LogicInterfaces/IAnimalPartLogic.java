@@ -5,5 +5,4 @@ import Shared.Model.AnimalPart;
 
 public interface IAnimalPartLogic {
     public AnimalPart create(AnimalPartCreationDto animalPart);
-    public AnimalPart getById(int id);
 }

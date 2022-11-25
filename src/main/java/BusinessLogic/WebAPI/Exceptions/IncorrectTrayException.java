@@ -1,4 +1,4 @@
-package BusinessLogic.WebAPI;
+package BusinessLogic.WebAPI.Exceptions;
 
 public class IncorrectTrayException extends RuntimeException {
     public IncorrectTrayException(int trayNumber) {

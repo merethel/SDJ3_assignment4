@@ -13,16 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class Station2Controller {
 
-    private final IAnimalLogic animalLogic;
-
     private final IAnimalPartLogic animalPartLogic;
-    private final AnimalModelAssembler assembler;
     private final AnimalPartModelAssembler animalPartModelAssembler;
 
-    public Station2Controller(IAnimalLogic animalLogic, IAnimalPartLogic animalPartLogic, AnimalModelAssembler assembler, AnimalPartModelAssembler animalPartModelAssembler) {
-        this.animalLogic = animalLogic;
+    public Station2Controller(IAnimalPartLogic animalPartLogic, AnimalPartModelAssembler animalPartModelAssembler) {
         this.animalPartLogic = animalPartLogic;
-        this.assembler = assembler;
         this.animalPartModelAssembler = animalPartModelAssembler;
     }
 

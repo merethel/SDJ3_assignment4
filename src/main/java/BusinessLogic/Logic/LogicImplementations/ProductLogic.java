@@ -3,6 +3,7 @@ package BusinessLogic.Logic.LogicImplementations;
 import BusinessLogic.GrpcClient.GrpcClient;
 import BusinessLogic.Logic.LogicInterfaces.IProductLogic;
 import Shared.Model.Product;
+import Shared.Model.Tray;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,20 +20,5 @@ public class ProductLogic implements IProductLogic {
     @Override
     public Product create(Product product) {
         return client.createProduct(product);
-    }
-
-    @Override
-    public Product getById(int id) {
-        return client.getProductById(id);
-    }
-
-    @Override
-    public List<Product> getProductsInvolved(int animalId) {
-        return client.productsInvolvedIn(animalId);
-    }
-
-    @Override
-    public List<Product> getAllProducts() {
-        return client.getAllProducts();
     }
 }

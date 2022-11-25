@@ -1,4 +1,4 @@
-package BusinessLogic.WebAPI;
+package BusinessLogic.WebAPI.Exceptions;
 
 public class MaximumWeightException extends RuntimeException {
     public MaximumWeightException(int maximumWeight) {

@@ -2,8 +2,8 @@ package BusinessLogic.Logic.LogicImplementations;
 
 import BusinessLogic.GrpcClient.GrpcClient;
 import BusinessLogic.Logic.LogicInterfaces.IAnimalPartLogic;
-import BusinessLogic.WebAPI.IncorrectTrayException;
-import BusinessLogic.WebAPI.MaximumWeightException;
+import BusinessLogic.WebAPI.Exceptions.IncorrectTrayException;
+import BusinessLogic.WebAPI.Exceptions.MaximumWeightException;
 import Shared.Dtos.AnimalPartCreationDto;
 import Shared.Model.AnimalPart;
 import Shared.Model.Tray;
@@ -37,10 +37,5 @@ public class AnimalPartLogic implements IAnimalPartLogic {
         }
 
         return client.createAnimalPart(animalPart);
-    }
-
-    @Override
-    public AnimalPart getById(int id) {
-        return null;
     }
 }
