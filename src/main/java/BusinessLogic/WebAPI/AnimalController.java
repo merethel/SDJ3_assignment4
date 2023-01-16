@@ -4,9 +4,11 @@ import BusinessLogic.Logic.LogicInterfaces.IAnimalLogic;
 import BusinessLogic.Logic.LogicInterfaces.IProductLogic;
 import BusinessLogic.WebAPI.Exceptions.AnimalNotFoundException;
 import Shared.Model.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +20,15 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 class AnimalController {
+    @Autowired
     private final IAnimalLogic animalLogic;
 
+    @Autowired
     private final IProductLogic productLogic;
-    private final AnimalModelAssembler assembler;
+    @Autowired
+    private final RepresentationModelAssembler<Animal, EntityModel<Animal>> assembler;
 
-    AnimalController(IAnimalLogic animalLogic, IProductLogic productLogic, AnimalModelAssembler assembler) {
+    AnimalController(IAnimalLogic animalLogic, IProductLogic productLogic, RepresentationModelAssembler<Animal, EntityModel<Animal>> assembler) {
         this.animalLogic = animalLogic;
         this.productLogic = productLogic;
         this.assembler = assembler;

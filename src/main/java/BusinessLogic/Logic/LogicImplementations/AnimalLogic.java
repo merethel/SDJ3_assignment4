@@ -1,8 +1,10 @@
 package BusinessLogic.Logic.LogicImplementations;
 
 import BusinessLogic.GrpcClient.GrpcClient;
+import BusinessLogic.GrpcClient.GrpcClientInterface;
 import BusinessLogic.Logic.LogicInterfaces.IAnimalLogic;
 import Shared.Model.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +12,10 @@ import java.util.List;
 @Component
 public class AnimalLogic implements IAnimalLogic {
 
-    private GrpcClient client;
+    @Autowired
+    private GrpcClientInterface client;
 
-    public AnimalLogic(GrpcClient client) {
+    public AnimalLogic(GrpcClientInterface client) {
         this.client = client;
     }
 

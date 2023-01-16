@@ -18,7 +18,7 @@ import java.util.List;
 
 @Component
 
-public class GrpcClient {
+public class GrpcClient implements GrpcClientInterface {
 
     ManagedChannel managedChannel;
     AnimalHandlerGrpc.AnimalHandlerBlockingStub animalStub;

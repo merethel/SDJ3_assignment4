@@ -43,7 +43,7 @@ public class StartServer {
         //IMPORTANT, run this line only to populate the datebase.
         LoadDatabase.initDatabase(sessionFactory);
 
-        Server server = ServerBuilder.forPort(9090).addService(new AnimalService(productDao, animalDao)).addService( new ProductService(productDao,animalDao)).build();
+        Server server = ServerBuilder.forPort(9090).addService(new AnimalService(productDao, animalDao)).addService(new ProductService(productDao,animalDao)).build();
         server.start();
         server.awaitTermination();
     }

@@ -12,7 +12,7 @@ import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+//@RestController
 public class Station3Controller {
 
     private final IProductLogic productLogic;
